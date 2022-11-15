@@ -150,23 +150,24 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                 loss = torch.tensor(0., device=device)
 
                 if helpers != None:
-                    with torch.no_grad():
-                        helper_labels = {}
-                        for client_id, helper_state_dict in helpers.items():
+                    helper_labels = {}
+                    for client_id, helper_state_dict in helpers.items():
+                        with torch.no_grad():
                             client_model.load_state_dict(helper_state_dict)
                             _, p = client_model(orig_images)
-                            helper_logits = client_model.classifier(p)                  
-                            loss += (nn.KLDivLoss(size_average="batchmean")(orig_logits, helper_logits)) / len(helpers)
+                            helper_logits = client_model.classifier(p).detach()
+                                            
+                        loss += (nn.KLDivLoss(size_average="batchmean")(orig_logits, helper_logits)) / len(helpers)
 
-                            values, indices = torch.max(nn.Softmax()(helper_logits), 1)
-                            helper_label = []
-                            for value, index in zip(values, indices):
-                                if value > args.tau:
-                                    helper_label.append(index)
-                                else:
-                                    helper_label.append(-1)
+                        values, indices = torch.max(nn.Softmax()(helper_logits), 1)
+                        helper_label = []
+                        for value, index in zip(values, indices):
+                            if value > args.tau:
+                                helper_label.append(index)
+                            else:
+                                helper_label.append(-1)
 
-                            helper_labels[client_id] = helper_label
+                        helper_labels[client_id] = helper_label
                     
                     
 
