@@ -1,0 +1,18 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "/home/kwangyeongill/FedSSL_recent/main.py", line 132, in <module>
+    p.start()
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 284, in _Popen
+    return Popen(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 62, in _launch
+    f.write(fp.getbuffer())
+OSError: [Errno 12] Cannot allocate memory

@@ -1,0 +1,513 @@
+Files already downloaded and verified
+Files already downloaded and verified
+ | Server Trained : test_loss 1.653836965560913 top1 44.54% top5 90.42% |
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 1.88
+Validation Accuracy : top1/top5 32.70%/83.10%
+#######################################################
+Took 582.2438433170319s
+ | Server Trained : test_loss 1.543981909751892 top1 50.36000000000001% top5 92.28% |
+#######################################################
+Avg Validation Stats after 2 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 34.90%/84.38%
+#######################################################
+Took 583.2664449214935s
+ | Server Trained : test_loss 1.642682433128357 top1 54.2% top5 94.1% |
+#######################################################
+Avg Validation Stats after 3 global rounds
+Validation Loss     : 1.80
+Validation Accuracy : top1/top5 35.46%/85.80%
+#######################################################
+Took 582.4253475666046s
+ | Server Trained : test_loss 1.7870365381240845 top1 54.42% top5 94.46% |
+#######################################################
+Avg Validation Stats after 4 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 34.10%/83.62%
+#######################################################
+Took 587.3044414520264s
+ | Server Trained : test_loss 1.7674530744552612 top1 56.74% top5 94.72% |
+#######################################################
+Avg Validation Stats after 5 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 34.08%/83.88%
+#######################################################
+Took 578.3843991756439s
+ | Server Trained : test_loss 1.7593189477920532 top1 58.32000000000001% top5 94.72% |
+#######################################################
+Avg Validation Stats after 6 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 34.50%/84.22%
+#######################################################
+Took 592.0342864990234s
+ | Server Trained : test_loss 1.6398053169250488 top1 60.18% top5 95.34% |
+#######################################################
+Avg Validation Stats after 7 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.80%/84.12%
+#######################################################
+Took 588.1442584991455s
+ | Server Trained : test_loss 1.5981711149215698 top1 61.519999999999996% top5 95.08% |
+#######################################################
+Avg Validation Stats after 8 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 32.86%/84.90%
+#######################################################
+Took 586.2974112033844s
+ | Server Trained : test_loss 1.686593770980835 top1 61.9% top5 95.14% |
+#######################################################
+Avg Validation Stats after 9 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 35.10%/84.44%
+#######################################################
+Took 590.8773987293243s
+ | Server Trained : test_loss 1.6386018991470337 top1 62.44% top5 94.82000000000001% |
+#######################################################
+Avg Validation Stats after 10 global rounds
+Validation Loss     : 1.80
+Validation Accuracy : top1/top5 34.66%/84.60%
+#######################################################
+Took 586.4924628734589s
+ | Server Trained : test_loss 1.6878031492233276 top1 62.8% top5 95.7% |
+#######################################################
+Avg Validation Stats after 11 global rounds
+Validation Loss     : 1.76
+Validation Accuracy : top1/top5 36.02%/86.48%
+#######################################################
+Took 585.2184402942657s
+ | Server Trained : test_loss 1.723064661026001 top1 61.839999999999996% top5 95.3% |
+#######################################################
+Avg Validation Stats after 12 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 34.36%/86.78%
+#######################################################
+Took 581.9057288169861s
+ | Server Trained : test_loss 1.799716830253601 top1 62.68% top5 95.1% |
+#######################################################
+Avg Validation Stats after 13 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 35.22%/86.62%
+#######################################################
+Took 592.0079407691956s
+ | Server Trained : test_loss 1.5979527235031128 top1 63.1% top5 95.0% |
+#######################################################
+Avg Validation Stats after 14 global rounds
+Validation Loss     : 1.72
+Validation Accuracy : top1/top5 37.40%/87.06%
+#######################################################
+Took 587.1230292320251s
+ | Server Trained : test_loss 1.6418373584747314 top1 65.38000000000001% top5 95.44% |
+#######################################################
+Avg Validation Stats after 15 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 36.96%/86.38%
+#######################################################
+Took 592.0075964927673s
+ | Server Trained : test_loss 1.8585917949676514 top1 61.419999999999995% top5 94.74000000000001% |
+#######################################################
+Avg Validation Stats after 16 global rounds
+Validation Loss     : 1.74
+Validation Accuracy : top1/top5 37.40%/86.72%
+#######################################################
+Took 588.5995688438416s
+ | Server Trained : test_loss 1.62250816822052 top1 65.14% top5 95.54% |
+#######################################################
+Avg Validation Stats after 17 global rounds
+Validation Loss     : 1.72
+Validation Accuracy : top1/top5 37.00%/87.38%
+#######################################################
+Took 592.6000757217407s
+ | Server Trained : test_loss 1.7073427438735962 top1 64.96% top5 94.88% |
+#######################################################
+Avg Validation Stats after 18 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 38.06%/87.02%
+#######################################################
+Took 587.4568853378296s
+ | Server Trained : test_loss 1.7693748474121094 top1 65.53999999999999% top5 95.88% |
+#######################################################
+Avg Validation Stats after 19 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 38.48%/87.76%
+#######################################################
+Took 582.8131942749023s
+ | Server Trained : test_loss 1.8157739639282227 top1 64.74% top5 95.6% |
+#######################################################
+Avg Validation Stats after 20 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 38.86%/87.38%
+#######################################################
+Took 582.5970048904419s
+ | Server Trained : test_loss 1.7617841958999634 top1 65.78% top5 95.58% |
+#######################################################
+Avg Validation Stats after 21 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 37.94%/88.00%
+#######################################################
+Took 582.9317407608032s
+ | Server Trained : test_loss 1.9752918481826782 top1 62.739999999999995% top5 95.36% |
+#######################################################
+Avg Validation Stats after 22 global rounds
+Validation Loss     : 1.72
+Validation Accuracy : top1/top5 38.18%/86.90%
+#######################################################
+Took 579.6927638053894s
+ | Server Trained : test_loss 1.6250277757644653 top1 67.14% top5 96.17999999999999% |
+#######################################################
+Avg Validation Stats after 23 global rounds
+Validation Loss     : 1.70
+Validation Accuracy : top1/top5 38.28%/87.42%
+#######################################################
+Took 582.5808064937592s
+ | Server Trained : test_loss 1.7626519203186035 top1 65.8% top5 96.1% |
+#######################################################
+Avg Validation Stats after 24 global rounds
+Validation Loss     : 1.73
+Validation Accuracy : top1/top5 37.74%/86.90%
+#######################################################
+Took 579.6752779483795s
+ | Server Trained : test_loss 1.8147943019866943 top1 65.86% top5 95.19999999999999% |
+#######################################################
+Avg Validation Stats after 25 global rounds
+Validation Loss     : 1.70
+Validation Accuracy : top1/top5 38.70%/87.02%
+#######################################################
+Took 580.823652267456s
+ | Server Trained : test_loss 1.7097125053405762 top1 66.38% top5 96.08% |
+#######################################################
+Avg Validation Stats after 26 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 37.60%/86.80%
+#######################################################
+Took 583.9651076793671s
+ | Server Trained : test_loss 1.8209947347640991 top1 65.3% top5 95.88% |
+#######################################################
+Avg Validation Stats after 27 global rounds
+Validation Loss     : 1.70
+Validation Accuracy : top1/top5 38.38%/88.00%
+#######################################################
+Took 586.1510262489319s
+ | Server Trained : test_loss 1.6372404098510742 top1 66.75999999999999% top5 96.14% |
+#######################################################
+Avg Validation Stats after 28 global rounds
+Validation Loss     : 1.69
+Validation Accuracy : top1/top5 38.88%/87.30%
+#######################################################
+Took 580.6879017353058s
+ | Server Trained : test_loss 1.9297367334365845 top1 66.67999999999999% top5 96.14% |
+#######################################################
+Avg Validation Stats after 29 global rounds
+Validation Loss     : 1.68
+Validation Accuracy : top1/top5 39.36%/88.00%
+#######################################################
+Took 586.645521402359s
+ | Server Trained : test_loss 1.8949898481369019 top1 65.64% top5 95.62% |
+#######################################################
+Avg Validation Stats after 30 global rounds
+Validation Loss     : 1.67
+Validation Accuracy : top1/top5 39.70%/88.38%
+#######################################################
+Took 590.9026696681976s
+ | Server Trained : test_loss 1.7322174310684204 top1 67.54% top5 96.32% |
+#######################################################
+Avg Validation Stats after 31 global rounds
+Validation Loss     : 1.67
+Validation Accuracy : top1/top5 39.78%/87.84%
+#######################################################
+Took 594.7512784004211s
+ | Server Trained : test_loss 1.7244642972946167 top1 67.96% top5 96.44% |
+#######################################################
+Avg Validation Stats after 32 global rounds
+Validation Loss     : 1.67
+Validation Accuracy : top1/top5 40.32%/87.94%
+#######################################################
+Took 589.3912281990051s
+ | Server Trained : test_loss 1.8021093606948853 top1 67.52% top5 95.98% |
+#######################################################
+Avg Validation Stats after 33 global rounds
+Validation Loss     : 1.66
+Validation Accuracy : top1/top5 39.90%/88.34%
+#######################################################
+Took 586.7749335765839s
+ | Server Trained : test_loss 1.9925720691680908 top1 65.7% top5 95.48% |
+#######################################################
+Avg Validation Stats after 34 global rounds
+Validation Loss     : 1.64
+Validation Accuracy : top1/top5 40.34%/88.74%
+#######################################################
+Took 585.145085811615s
+ | Server Trained : test_loss 1.8410090208053589 top1 66.0% top5 95.78% |
+#######################################################
+Avg Validation Stats after 35 global rounds
+Validation Loss     : 1.63
+Validation Accuracy : top1/top5 40.42%/89.04%
+#######################################################
+Took 584.7209122180939s
+ | Server Trained : test_loss 1.922014594078064 top1 66.92% top5 95.84% |
+#######################################################
+Avg Validation Stats after 36 global rounds
+Validation Loss     : 1.64
+Validation Accuracy : top1/top5 41.04%/88.70%
+#######################################################
+Took 586.4565649032593s
+ | Server Trained : test_loss 1.7342082262039185 top1 68.36% top5 96.34% |
+#######################################################
+Avg Validation Stats after 37 global rounds
+Validation Loss     : 1.62
+Validation Accuracy : top1/top5 41.70%/88.72%
+#######################################################
+Took 583.1697156429291s
+ | Server Trained : test_loss 1.985593557357788 top1 66.97999999999999% top5 96.08% |
+#######################################################
+Avg Validation Stats after 38 global rounds
+Validation Loss     : 1.64
+Validation Accuracy : top1/top5 40.38%/88.48%
+#######################################################
+Took 587.6987752914429s
+ | Server Trained : test_loss 1.9256610870361328 top1 66.46% top5 96.06% |
+#######################################################
+Avg Validation Stats after 39 global rounds
+Validation Loss     : 1.65
+Validation Accuracy : top1/top5 40.54%/88.22%
+#######################################################
+Took 587.2800312042236s
+ | Server Trained : test_loss 1.8534550666809082 top1 67.34% top5 96.08% |
+#######################################################
+Avg Validation Stats after 40 global rounds
+Validation Loss     : 1.66
+Validation Accuracy : top1/top5 39.08%/88.56%
+#######################################################
+Took 585.6835813522339s
+ | Server Trained : test_loss 2.1045618057250977 top1 65.28% top5 95.32000000000001% |
+#######################################################
+Avg Validation Stats after 41 global rounds
+Validation Loss     : 1.61
+Validation Accuracy : top1/top5 41.94%/89.14%
+#######################################################
+Took 584.9196217060089s
+ | Server Trained : test_loss 1.989522099494934 top1 65.84% top5 95.58% |
+#######################################################
+Avg Validation Stats after 42 global rounds
+Validation Loss     : 1.61
+Validation Accuracy : top1/top5 42.20%/88.86%
+#######################################################
+Took 584.6446616649628s
+ | Server Trained : test_loss 1.7852553129196167 top1 67.62% top5 96.17999999999999% |
+#######################################################
+Avg Validation Stats after 43 global rounds
+Validation Loss     : 1.63
+Validation Accuracy : top1/top5 41.54%/88.40%
+#######################################################
+Took 594.4993939399719s
+ | Server Trained : test_loss 1.9695580005645752 top1 67.66% top5 96.28% |
+#######################################################
+Avg Validation Stats after 44 global rounds
+Validation Loss     : 1.60
+Validation Accuracy : top1/top5 43.16%/88.96%
+#######################################################
+Took 586.6938271522522s
+ | Server Trained : test_loss 1.9189423322677612 top1 67.66% top5 96.2% |
+#######################################################
+Avg Validation Stats after 45 global rounds
+Validation Loss     : 1.59
+Validation Accuracy : top1/top5 42.38%/89.72%
+#######################################################
+Took 588.0007059574127s
+ | Server Trained : test_loss 1.8260345458984375 top1 67.62% top5 95.84% |
+#######################################################
+Avg Validation Stats after 46 global rounds
+Validation Loss     : 1.58
+Validation Accuracy : top1/top5 42.72%/89.64%
+#######################################################
+Took 585.8424189090729s
+ | Server Trained : test_loss 2.086249828338623 top1 66.12% top5 96.04% |
+#######################################################
+Avg Validation Stats after 47 global rounds
+Validation Loss     : 1.61
+Validation Accuracy : top1/top5 41.96%/89.68%
+#######################################################
+Took 590.6581976413727s
+ | Server Trained : test_loss 1.8877761363983154 top1 67.4% top5 96.16% |
+#######################################################
+Avg Validation Stats after 48 global rounds
+Validation Loss     : 1.58
+Validation Accuracy : top1/top5 42.22%/89.80%
+#######################################################
+Took 587.191174030304s
+ | Server Trained : test_loss 1.8739007711410522 top1 68.67999999999999% top5 96.39999999999999% |
+#######################################################
+Avg Validation Stats after 49 global rounds
+Validation Loss     : 1.57
+Validation Accuracy : top1/top5 42.68%/90.18%
+#######################################################
+Took 594.4549233913422s
+ | Server Trained : test_loss 1.9615135192871094 top1 68.2% top5 96.1% |
+#######################################################
+Avg Validation Stats after 50 global rounds
+Validation Loss     : 1.59
+Validation Accuracy : top1/top5 43.16%/89.48%
+#######################################################
+Took 593.4463205337524s
+ | Server Trained : test_loss 2.027379035949707 top1 68.14% top5 95.89999999999999% |
+#######################################################
+Avg Validation Stats after 51 global rounds
+Validation Loss     : 1.57
+Validation Accuracy : top1/top5 43.20%/89.96%
+#######################################################
+Took 585.5398480892181s
+ | Server Trained : test_loss 2.14776873588562 top1 67.14% top5 95.12% |
+#######################################################
+Avg Validation Stats after 52 global rounds
+Validation Loss     : 1.56
+Validation Accuracy : top1/top5 43.38%/90.46%
+#######################################################
+Took 590.908917427063s
+ | Server Trained : test_loss 2.000983476638794 top1 67.7% top5 96.56% |
+#######################################################
+Avg Validation Stats after 53 global rounds
+Validation Loss     : 1.57
+Validation Accuracy : top1/top5 42.70%/89.90%
+#######################################################
+Took 586.3624651432037s
+ | Server Trained : test_loss 1.968963623046875 top1 67.14% top5 96.06% |
+#######################################################
+Avg Validation Stats after 54 global rounds
+Validation Loss     : 1.57
+Validation Accuracy : top1/top5 43.30%/90.18%
+#######################################################
+Took 594.1287679672241s
+ | Server Trained : test_loss 2.038801908493042 top1 68.60000000000001% top5 96.0% |
+#######################################################
+Avg Validation Stats after 55 global rounds
+Validation Loss     : 1.58
+Validation Accuracy : top1/top5 43.20%/89.88%
+#######################################################
+Took 582.3332560062408s
+ | Server Trained : test_loss 2.0787110328674316 top1 68.0% top5 96.38% |
+#######################################################
+Avg Validation Stats after 56 global rounds
+Validation Loss     : 1.58
+Validation Accuracy : top1/top5 43.10%/90.18%
+#######################################################
+Took 597.3740670681s
+ | Server Trained : test_loss 1.9512523412704468 top1 69.34% top5 96.44% |
+#######################################################
+Avg Validation Stats after 57 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 44.48%/90.44%
+#######################################################
+Took 587.8356902599335s
+ | Server Trained : test_loss 2.085024118423462 top1 68.86% top5 96.06% |
+#######################################################
+Avg Validation Stats after 58 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.92%/90.48%
+#######################################################
+Took 586.0558149814606s
+ | Server Trained : test_loss 2.0118768215179443 top1 67.75999999999999% top5 95.54% |
+#######################################################
+Avg Validation Stats after 59 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 44.06%/90.78%
+#######################################################
+Took 590.897248506546s
+ | Server Trained : test_loss 2.050888776779175 top1 68.88% top5 95.96000000000001% |
+#######################################################
+Avg Validation Stats after 60 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.88%/90.32%
+#######################################################
+Took 583.4079501628876s
+ | Server Trained : test_loss 2.0287270545959473 top1 68.86% top5 95.6% |
+#######################################################
+Avg Validation Stats after 61 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 44.32%/90.70%
+#######################################################
+Took 594.3347978591919s
+ | Server Trained : test_loss 2.412540912628174 top1 66.56% top5 95.56% |
+#######################################################
+Avg Validation Stats after 62 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.44%/90.28%
+#######################################################
+Took 581.9538593292236s
+ | Server Trained : test_loss 2.212449550628662 top1 67.9% top5 96.14% |
+#######################################################
+Avg Validation Stats after 63 global rounds
+Validation Loss     : 1.56
+Validation Accuracy : top1/top5 43.16%/90.60%
+#######################################################
+Took 600.1931536197662s
+ | Server Trained : test_loss 2.059570789337158 top1 67.12% top5 95.6% |
+#######################################################
+Avg Validation Stats after 64 global rounds
+Validation Loss     : 1.56
+Validation Accuracy : top1/top5 43.28%/90.36%
+#######################################################
+Took 588.0265870094299s
+ | Server Trained : test_loss 1.9579193592071533 top1 68.14% top5 95.98% |
+#######################################################
+Avg Validation Stats after 65 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.90%/90.66%
+#######################################################
+Took 589.3589317798615s
+ | Server Trained : test_loss 2.131561517715454 top1 67.2% top5 95.89999999999999% |
+#######################################################
+Avg Validation Stats after 66 global rounds
+Validation Loss     : 1.56
+Validation Accuracy : top1/top5 43.58%/90.38%
+#######################################################
+Took 594.2955725193024s
+ | Server Trained : test_loss 2.0707826614379883 top1 67.60000000000001% top5 95.96000000000001% |
+#######################################################
+Avg Validation Stats after 67 global rounds
+Validation Loss     : 1.56
+Validation Accuracy : top1/top5 44.04%/90.44%
+#######################################################
+Took 586.2561175823212s
+ | Server Trained : test_loss 1.8890107870101929 top1 69.98% top5 96.34% |
+#######################################################
+Avg Validation Stats after 68 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.92%/91.08%
+#######################################################
+Took 593.1327831745148s
+ | Server Trained : test_loss 2.145322322845459 top1 68.72% top5 96.2% |
+#######################################################
+Avg Validation Stats after 69 global rounds
+Validation Loss     : 1.53
+Validation Accuracy : top1/top5 43.90%/91.04%
+#######################################################
+Took 581.6859967708588s
+ | Server Trained : test_loss 2.100956916809082 top1 68.92% top5 96.16% |
+#######################################################
+Avg Validation Stats after 70 global rounds
+Validation Loss     : 1.54
+Validation Accuracy : top1/top5 44.06%/90.86%
+#######################################################
+Took 597.547643661499s
+ | Server Trained : test_loss 2.0250606536865234 top1 69.54% top5 96.38% |
+#######################################################
+Avg Validation Stats after 71 global rounds
+Validation Loss     : 1.53
+Validation Accuracy : top1/top5 44.46%/90.84%
+#######################################################
+Took 600.3495061397552s
+ | Server Trained : test_loss 2.14001202583313 top1 67.54% top5 95.22% |
+#######################################################
+Avg Validation Stats after 72 global rounds
+Validation Loss     : 1.53
+Validation Accuracy : top1/top5 44.34%/90.92%
+#######################################################
+Took 590.9955887794495s
+ | Server Trained : test_loss 2.2869997024536133 top1 68.0% top5 95.82000000000001% |
+#######################################################
+Avg Validation Stats after 73 global rounds
+Validation Loss     : 1.55
+Validation Accuracy : top1/top5 43.10%/90.52%
+#######################################################
+Took 594.5927729606628s

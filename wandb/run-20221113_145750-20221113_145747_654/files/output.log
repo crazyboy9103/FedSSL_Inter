@@ -1,0 +1,20 @@
+
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% |  5% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+Traceback (most recent call last):
+  File "/home/kwangyeongill/FedSSL_recent/main.py", line 140, in <module>
+    helpers = kNN_helpers(args, client_model, local_weights)
+  File "/home/kwangyeongill/FedSSL_recent/utils.py", line 41, in kNN_helpers
+    helpers[i][index] = local_weights[index].clone()
+AttributeError: 'collections.OrderedDict' object has no attribute 'clone'
+| ID | GPU | MEM |
+------------------
+|  0 |  0% | 14% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |

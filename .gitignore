@@ -1,0 +1,10 @@
+*.tar
+logs/
+data/
+*.ipynb
+*.json
+*.zip
+__pycache__/
+*.txt
+*.png
+*.out

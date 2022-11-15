@@ -1,0 +1,602 @@
+Files already downloaded and verified
+Files already downloaded and verified
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 31.86%/82.32%
+#######################################################
+Took 376.8128807544708s
+#######################################################
+Avg Validation Stats after 2 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 34.18%/83.30%
+#######################################################
+Took 372.0496482849121s
+#######################################################
+Avg Validation Stats after 3 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 33.34%/84.08%
+#######################################################
+Took 366.90805888175964s
+#######################################################
+Avg Validation Stats after 4 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 30.54%/81.92%
+#######################################################
+Took 367.79904675483704s
+#######################################################
+Avg Validation Stats after 5 global rounds
+Validation Loss     : 1.95
+Validation Accuracy : top1/top5 27.34%/81.78%
+#######################################################
+Took 364.56056118011475s
+#######################################################
+Avg Validation Stats after 6 global rounds
+Validation Loss     : 1.93
+Validation Accuracy : top1/top5 29.36%/82.50%
+#######################################################
+Took 369.44424295425415s
+#######################################################
+Avg Validation Stats after 7 global rounds
+Validation Loss     : 1.89
+Validation Accuracy : top1/top5 31.42%/82.62%
+#######################################################
+Took 372.64708948135376s
+#######################################################
+Avg Validation Stats after 8 global rounds
+Validation Loss     : 1.92
+Validation Accuracy : top1/top5 30.90%/82.48%
+#######################################################
+Took 365.5138535499573s
+#######################################################
+Avg Validation Stats after 9 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 32.58%/81.76%
+#######################################################
+Took 366.77939343452454s
+#######################################################
+Avg Validation Stats after 10 global rounds
+Validation Loss     : 1.91
+Validation Accuracy : top1/top5 31.72%/82.80%
+#######################################################
+Took 371.9499886035919s
+#######################################################
+Avg Validation Stats after 11 global rounds
+Validation Loss     : 1.91
+Validation Accuracy : top1/top5 29.90%/81.44%
+#######################################################
+Took 365.3372428417206s
+#######################################################
+Avg Validation Stats after 12 global rounds
+Validation Loss     : 1.93
+Validation Accuracy : top1/top5 31.68%/81.20%
+#######################################################
+Took 368.65386152267456s
+#######################################################
+Avg Validation Stats after 13 global rounds
+Validation Loss     : 1.93
+Validation Accuracy : top1/top5 32.36%/81.42%
+#######################################################
+Took 368.7226939201355s
+#######################################################
+Avg Validation Stats after 14 global rounds
+Validation Loss     : 1.97
+Validation Accuracy : top1/top5 29.82%/81.34%
+#######################################################
+Took 368.98313307762146s
+#######################################################
+Avg Validation Stats after 15 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 32.16%/82.48%
+#######################################################
+Took 368.03119111061096s
+#######################################################
+Avg Validation Stats after 16 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 31.14%/81.10%
+#######################################################
+Took 365.37740111351013s
+#######################################################
+Avg Validation Stats after 17 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 32.26%/82.02%
+#######################################################
+Took 368.3975501060486s
+#######################################################
+Avg Validation Stats after 18 global rounds
+Validation Loss     : 1.92
+Validation Accuracy : top1/top5 31.74%/80.26%
+#######################################################
+Took 366.84653639793396s
+#######################################################
+Avg Validation Stats after 19 global rounds
+Validation Loss     : 1.92
+Validation Accuracy : top1/top5 30.02%/82.18%
+#######################################################
+Took 367.60788106918335s
+#######################################################
+Avg Validation Stats after 20 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 32.06%/80.96%
+#######################################################
+Took 371.37956190109253s
+#######################################################
+Avg Validation Stats after 21 global rounds
+Validation Loss     : 1.91
+Validation Accuracy : top1/top5 32.24%/82.72%
+#######################################################
+Took 375.62827467918396s
+#######################################################
+Avg Validation Stats after 22 global rounds
+Validation Loss     : 1.87
+Validation Accuracy : top1/top5 31.42%/83.22%
+#######################################################
+Took 377.59255480766296s
+#######################################################
+Avg Validation Stats after 23 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 32.32%/83.20%
+#######################################################
+Took 369.55107021331787s
+#######################################################
+Avg Validation Stats after 24 global rounds
+Validation Loss     : 1.88
+Validation Accuracy : top1/top5 30.58%/82.58%
+#######################################################
+Took 373.81255626678467s
+#######################################################
+Avg Validation Stats after 25 global rounds
+Validation Loss     : 1.88
+Validation Accuracy : top1/top5 32.48%/83.88%
+#######################################################
+Took 367.64823746681213s
+#######################################################
+Avg Validation Stats after 26 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 30.24%/83.66%
+#######################################################
+Took 372.77350187301636s
+#######################################################
+Avg Validation Stats after 27 global rounds
+Validation Loss     : 1.89
+Validation Accuracy : top1/top5 31.32%/82.02%
+#######################################################
+Took 368.0792353153229s
+#######################################################
+Avg Validation Stats after 28 global rounds
+Validation Loss     : 1.88
+Validation Accuracy : top1/top5 32.50%/83.00%
+#######################################################
+Took 369.0176134109497s
+#######################################################
+Avg Validation Stats after 29 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 33.48%/83.32%
+#######################################################
+Took 368.72753071784973s
+#######################################################
+Avg Validation Stats after 30 global rounds
+Validation Loss     : 1.87
+Validation Accuracy : top1/top5 32.74%/83.34%
+#######################################################
+Took 371.1432249546051s
+#######################################################
+Avg Validation Stats after 31 global rounds
+Validation Loss     : 1.86
+Validation Accuracy : top1/top5 33.14%/82.64%
+#######################################################
+Took 369.5243601799011s
+#######################################################
+Avg Validation Stats after 32 global rounds
+Validation Loss     : 1.86
+Validation Accuracy : top1/top5 32.26%/83.48%
+#######################################################
+Took 370.15633153915405s
+#######################################################
+Avg Validation Stats after 33 global rounds
+Validation Loss     : 1.89
+Validation Accuracy : top1/top5 31.26%/83.20%
+#######################################################
+Took 367.5328767299652s
+#######################################################
+Avg Validation Stats after 34 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 32.88%/84.66%
+#######################################################
+Took 372.3705472946167s
+#######################################################
+Avg Validation Stats after 35 global rounds
+Validation Loss     : 1.90
+Validation Accuracy : top1/top5 31.90%/82.98%
+#######################################################
+Took 368.777339220047s
+#######################################################
+Avg Validation Stats after 36 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 32.68%/83.92%
+#######################################################
+Took 368.26791644096375s
+#######################################################
+Avg Validation Stats after 37 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.00%/84.14%
+#######################################################
+Took 372.3736209869385s
+#######################################################
+Avg Validation Stats after 38 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 32.74%/85.02%
+#######################################################
+Took 366.69143056869507s
+#######################################################
+Avg Validation Stats after 39 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 34.48%/83.86%
+#######################################################
+Took 371.3462824821472s
+#######################################################
+Avg Validation Stats after 40 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 34.50%/83.80%
+#######################################################
+Took 370.44485211372375s
+#######################################################
+Avg Validation Stats after 41 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 32.18%/84.16%
+#######################################################
+Took 377.10202956199646s
+#######################################################
+Avg Validation Stats after 42 global rounds
+Validation Loss     : 1.81
+Validation Accuracy : top1/top5 33.22%/85.12%
+#######################################################
+Took 370.3700428009033s
+#######################################################
+Avg Validation Stats after 43 global rounds
+Validation Loss     : 1.89
+Validation Accuracy : top1/top5 31.40%/83.22%
+#######################################################
+Took 368.6222174167633s
+#######################################################
+Avg Validation Stats after 44 global rounds
+Validation Loss     : 1.86
+Validation Accuracy : top1/top5 31.10%/83.72%
+#######################################################
+Took 372.35237431526184s
+#######################################################
+Avg Validation Stats after 45 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 32.48%/85.18%
+#######################################################
+Took 371.5968723297119s
+#######################################################
+Avg Validation Stats after 46 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 31.98%/84.84%
+#######################################################
+Took 370.20609998703003s
+#######################################################
+Avg Validation Stats after 47 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 32.38%/84.32%
+#######################################################
+Took 374.49105763435364s
+#######################################################
+Avg Validation Stats after 48 global rounds
+Validation Loss     : 1.86
+Validation Accuracy : top1/top5 32.32%/83.96%
+#######################################################
+Took 376.8998546600342s
+#######################################################
+Avg Validation Stats after 49 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.62%/83.80%
+#######################################################
+Took 369.4840786457062s
+#######################################################
+Avg Validation Stats after 50 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.06%/84.36%
+#######################################################
+Took 369.6753396987915s
+#######################################################
+Avg Validation Stats after 51 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 31.06%/83.82%
+#######################################################
+Took 375.1554582118988s
+#######################################################
+Avg Validation Stats after 52 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 32.12%/83.22%
+#######################################################
+Took 373.8145544528961s
+#######################################################
+Avg Validation Stats after 53 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 33.74%/84.00%
+#######################################################
+Took 374.68492126464844s
+#######################################################
+Avg Validation Stats after 54 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.48%/85.24%
+#######################################################
+Took 369.0030059814453s
+#######################################################
+Avg Validation Stats after 55 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 33.28%/84.24%
+#######################################################
+Took 371.4079637527466s
+#######################################################
+Avg Validation Stats after 56 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 34.00%/85.94%
+#######################################################
+Took 374.53092193603516s
+#######################################################
+Avg Validation Stats after 57 global rounds
+Validation Loss     : 1.78
+Validation Accuracy : top1/top5 34.66%/86.02%
+#######################################################
+Took 367.52945351600647s
+#######################################################
+Avg Validation Stats after 58 global rounds
+Validation Loss     : 1.85
+Validation Accuracy : top1/top5 33.58%/85.96%
+#######################################################
+Took 369.89239525794983s
+#######################################################
+Avg Validation Stats after 59 global rounds
+Validation Loss     : 1.79
+Validation Accuracy : top1/top5 35.26%/86.56%
+#######################################################
+Took 375.3035979270935s
+#######################################################
+Avg Validation Stats after 60 global rounds
+Validation Loss     : 1.79
+Validation Accuracy : top1/top5 35.10%/86.14%
+#######################################################
+Took 369.3102328777313s
+#######################################################
+Avg Validation Stats after 61 global rounds
+Validation Loss     : 1.84
+Validation Accuracy : top1/top5 33.56%/84.96%
+#######################################################
+Took 369.8326072692871s
+#######################################################
+Avg Validation Stats after 62 global rounds
+Validation Loss     : 1.79
+Validation Accuracy : top1/top5 32.90%/86.08%
+#######################################################
+Took 379.9415831565857s
+#######################################################
+Avg Validation Stats after 63 global rounds
+Validation Loss     : 1.80
+Validation Accuracy : top1/top5 33.98%/85.60%
+#######################################################
+Took 372.8417479991913s
+#######################################################
+Avg Validation Stats after 64 global rounds
+Validation Loss     : 1.79
+Validation Accuracy : top1/top5 33.36%/86.74%
+#######################################################
+Took 368.566832780838s
+#######################################################
+Avg Validation Stats after 65 global rounds
+Validation Loss     : 1.81
+Validation Accuracy : top1/top5 34.54%/85.34%
+#######################################################
+Took 372.2155966758728s
+#######################################################
+Avg Validation Stats after 66 global rounds
+Validation Loss     : 1.83
+Validation Accuracy : top1/top5 33.76%/85.60%
+#######################################################
+Took 376.14781284332275s
+#######################################################
+Avg Validation Stats after 67 global rounds
+Validation Loss     : 1.81
+Validation Accuracy : top1/top5 33.54%/85.54%
+#######################################################
+Took 371.71127128601074s
+#######################################################
+Avg Validation Stats after 68 global rounds
+Validation Loss     : 1.76
+Validation Accuracy : top1/top5 34.72%/86.68%
+#######################################################
+Took 370.8759877681732s
+#######################################################
+Avg Validation Stats after 69 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 33.86%/85.56%
+#######################################################
+Took 375.86127638816833s
+#######################################################
+Avg Validation Stats after 70 global rounds
+Validation Loss     : 1.79
+Validation Accuracy : top1/top5 33.88%/86.24%
+#######################################################
+Took 372.04049706459045s
+#######################################################
+Avg Validation Stats after 71 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 34.94%/86.74%
+#######################################################
+Took 369.4235303401947s
+#######################################################
+Avg Validation Stats after 72 global rounds
+Validation Loss     : 1.77
+Validation Accuracy : top1/top5 35.14%/86.92%
+#######################################################
+Took 370.2797019481659s
+#######################################################
+Avg Validation Stats after 73 global rounds
+Validation Loss     : 1.77
+Validation Accuracy : top1/top5 35.00%/87.16%
+#######################################################
+Took 380.0937898159027s
+#######################################################
+Avg Validation Stats after 74 global rounds
+Validation Loss     : 1.77
+Validation Accuracy : top1/top5 36.10%/86.46%
+#######################################################
+Took 379.54095482826233s
+#######################################################
+Avg Validation Stats after 75 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 35.86%/87.26%
+#######################################################
+Took 372.6993234157562s
+#######################################################
+Avg Validation Stats after 76 global rounds
+Validation Loss     : 1.77
+Validation Accuracy : top1/top5 35.20%/86.34%
+#######################################################
+Took 369.3693141937256s
+#######################################################
+Avg Validation Stats after 77 global rounds
+Validation Loss     : 1.74
+Validation Accuracy : top1/top5 36.60%/86.64%
+#######################################################
+Took 379.91452383995056s
+#######################################################
+Avg Validation Stats after 78 global rounds
+Validation Loss     : 1.78
+Validation Accuracy : top1/top5 35.46%/85.96%
+#######################################################
+Took 373.1432001590729s
+#######################################################
+Avg Validation Stats after 79 global rounds
+Validation Loss     : 1.76
+Validation Accuracy : top1/top5 36.48%/86.44%
+#######################################################
+Took 372.7680492401123s
+#######################################################
+Avg Validation Stats after 80 global rounds
+Validation Loss     : 1.82
+Validation Accuracy : top1/top5 32.86%/85.74%
+#######################################################
+Took 379.9351568222046s
+#######################################################
+Avg Validation Stats after 81 global rounds
+Validation Loss     : 1.74
+Validation Accuracy : top1/top5 37.42%/86.80%
+#######################################################
+Took 374.0482687950134s
+#######################################################
+Avg Validation Stats after 82 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 36.72%/88.06%
+#######################################################
+Took 370.68959188461304s
+#######################################################
+Avg Validation Stats after 83 global rounds
+Validation Loss     : 1.81
+Validation Accuracy : top1/top5 34.70%/86.60%
+#######################################################
+Took 375.5974988937378s
+#######################################################
+Avg Validation Stats after 84 global rounds
+Validation Loss     : 1.73
+Validation Accuracy : top1/top5 36.50%/87.50%
+#######################################################
+Took 383.03277587890625s
+#######################################################
+Avg Validation Stats after 85 global rounds
+Validation Loss     : 1.74
+Validation Accuracy : top1/top5 35.94%/87.84%
+#######################################################
+Took 383.0901188850403s
+#######################################################
+Avg Validation Stats after 86 global rounds
+Validation Loss     : 1.72
+Validation Accuracy : top1/top5 36.08%/87.92%
+#######################################################
+Took 376.8773651123047s
+#######################################################
+Avg Validation Stats after 87 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 36.80%/87.82%
+#######################################################
+Took 377.7787833213806s
+#######################################################
+Avg Validation Stats after 88 global rounds
+Validation Loss     : 1.69
+Validation Accuracy : top1/top5 38.28%/88.22%
+#######################################################
+Took 382.022586107254s
+#######################################################
+Avg Validation Stats after 89 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 37.76%/87.62%
+#######################################################
+Took 372.9636023044586s
+#######################################################
+Avg Validation Stats after 90 global rounds
+Validation Loss     : 1.69
+Validation Accuracy : top1/top5 38.84%/88.60%
+#######################################################
+Took 381.696430683136s
+#######################################################
+Avg Validation Stats after 91 global rounds
+Validation Loss     : 1.72
+Validation Accuracy : top1/top5 37.48%/88.10%
+#######################################################
+Took 383.64711260795593s
+#######################################################
+Avg Validation Stats after 92 global rounds
+Validation Loss     : 1.70
+Validation Accuracy : top1/top5 37.18%/88.58%
+#######################################################
+Took 373.5620572566986s
+#######################################################
+Avg Validation Stats after 93 global rounds
+Validation Loss     : 1.73
+Validation Accuracy : top1/top5 35.84%/87.50%
+#######################################################
+Took 388.98916363716125s
+#######################################################
+Avg Validation Stats after 94 global rounds
+Validation Loss     : 1.74
+Validation Accuracy : top1/top5 36.68%/86.88%
+#######################################################
+Took 382.61454725265503s
+#######################################################
+Avg Validation Stats after 95 global rounds
+Validation Loss     : 1.75
+Validation Accuracy : top1/top5 36.62%/87.48%
+#######################################################
+Took 373.5347936153412s
+#######################################################
+Avg Validation Stats after 96 global rounds
+Validation Loss     : 1.68
+Validation Accuracy : top1/top5 37.60%/88.92%
+#######################################################
+Took 382.2708570957184s
+#######################################################
+Avg Validation Stats after 97 global rounds
+Validation Loss     : 1.77
+Validation Accuracy : top1/top5 35.92%/87.36%
+#######################################################
+Took 381.37637090682983s
+#######################################################
+Avg Validation Stats after 98 global rounds
+Validation Loss     : 1.71
+Validation Accuracy : top1/top5 36.74%/88.28%
+#######################################################
+Took 375.9287724494934s
+#######################################################
+Avg Validation Stats after 99 global rounds
+Validation Loss     : 1.67
+Validation Accuracy : top1/top5 37.46%/89.02%
+#######################################################
+Took 383.514098405838s
+#######################################################
+Avg Validation Stats after 100 global rounds
+Validation Loss     : 1.68
+Validation Accuracy : top1/top5 39.14%/87.98%
+#######################################################
+Took 384.0952260494232s

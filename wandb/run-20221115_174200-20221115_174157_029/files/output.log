@@ -1,0 +1,27 @@
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% |  5% |
+|  1 | 100% | 14% |
+|  2 | 100% | 14% |
+|  3 | 100% | 14% |
+Traceback (most recent call last):
+  File "/home/kwangyeongill/FedSSL_recent/main.py", line 142, in <module>
+    grad_div = gradient_diversity(local_weights, client_model.state_dict())
+  File "/home/kwangyeongill/FedSSL_recent/utils.py", line 20, in gradient_diversity
+    l2_norm += torch.pow(torch.norm(nabla_k), 2)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/torch/functional.py", line 1543, in norm
+    return _VF.frobenius_norm(input, dim=(), keepdim=keepdim)
+RuntimeError: norm(): input dtype should be either floating point or complex dtypes. Got Long instead.
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 15% |
+|  1 | 100% | 14% |
+|  2 | 100% | 14% |
+|  3 | 100% | 14% |
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 15% |
+|  1 | 100% | 14% |
+|  2 | 100% | 14% |

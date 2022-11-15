@@ -1,0 +1,36 @@
+Files already downloaded and verified
+Files already downloaded and verified
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 2.96
+Validation Accuracy : top1/top5 20.24%/73.40%
+#######################################################
+Took 372.9341332912445s
+Traceback (most recent call last):
+  File "/home/kwangyeongill/FedSSL_recent/main.py", line 69, in <module>
+    state_dict = train_server_model(
+  File "/home/kwangyeongill/FedSSL_recent/trainers.py", line 73, in train_server_model
+    for batch_idx, (images, labels) in enumerate(loader):
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 368, in __iter__
+    return self._get_iterator()
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 314, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 927, in __init__
+    w.start()
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 284, in _Popen
+    return Popen(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 47, in _launch
+    reduction.dump(process_obj, fp)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/reduction.py", line 60, in dump
+    ForkingPickler(file, protocol).dump(obj)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/multiprocessing/queues.py", line 57, in __getstate__
+    def __getstate__(self):
+KeyboardInterrupt

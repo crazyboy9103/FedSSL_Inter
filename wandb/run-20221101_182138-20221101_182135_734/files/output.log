@@ -1,0 +1,16 @@
+Files already downloaded and verified
+Files already downloaded and verified
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 2.10
+Validation Accuracy : top1/top5 25.26%/73.84%
+#######################################################
+#######################################################
+Avg Validation Stats after 2 global rounds
+Validation Loss     : 2.01
+Validation Accuracy : top1/top5 26.60%/78.18%
+#######################################################
+#######################################################
+Avg Validation Stats after 3 global rounds
+Validation Loss     : 1.96
+Validation Accuracy : top1/top5 29.86%/79.12%
