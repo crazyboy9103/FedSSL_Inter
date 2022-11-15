@@ -1,0 +1,45 @@
+
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar/cifar-10-python.tar.gz
+
+
+
+
+
+170499072it [00:10, 15608877.56it/s]
+Extracting ./data/cifar/cifar-10-python.tar.gz to ./data/cifar
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% |  7% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+Traceback (most recent call last):
+  File "/home/shared/FedSSL_Inter/main.py", line 76, in <module>
+    state_dict = train_server_model(
+  File "/home/shared/FedSSL_Inter/trainers.py", line 72, in train_server_model
+    for batch_idx, (images, labels) in enumerate(loader):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 368, in __iter__
+    return self._get_iterator()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 314, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 927, in __init__
+    w.start()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 284, in _Popen
+    return Popen(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 62, in _launch
+    f.write(fp.getbuffer())
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py", line 1448, in _shutdown
+    lock.acquire()
+KeyboardInterrupt:

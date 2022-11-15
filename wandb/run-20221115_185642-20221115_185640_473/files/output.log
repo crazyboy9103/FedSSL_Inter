@@ -1,0 +1,20 @@
+
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% | 23% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+Traceback (most recent call last):
+  File "/home/shared/FedSSL_Inter/main.py", line 142, in <module>
+    grad_div = gradient_diversity(local_weights, client_model.state_dict())
+  File "/home/shared/FedSSL_Inter/utils.py", line 20, in gradient_diversity
+    nabla_k = local_weight[k].detach() - global_weight[k].detach()
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:1 and cuda:0!
+Exception ignored in: <module 'threading' from '/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py", line 1448, in _shutdown
+    lock.acquire()
+KeyboardInterrupt:

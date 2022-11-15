@@ -1,0 +1,26 @@
+
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  4% | 11% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+Traceback (most recent call last):
+  File "/home/shared/FedSSL_Inter/main.py", line 131, in <module>
+    weight = q.get()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/queues.py", line 103, in get
+    res = self._recv_bytes()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/connection.py", line 221, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/connection.py", line 419, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/connection.py", line 384, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py", line 1448, in _shutdown
+    lock.acquire()
+KeyboardInterrupt:

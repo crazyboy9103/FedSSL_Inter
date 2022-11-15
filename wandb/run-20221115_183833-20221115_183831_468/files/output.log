@@ -1,0 +1,83 @@
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% |  7% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 2.07
+Validation Accuracy : top1/top5 36.36%/84.48%
+#######################################################
+Took 322.5540657043457s
+| ID | GPU | MEM |
+------------------
+|  0 |  1% | 95% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+#######################################################
+Avg Validation Stats after 2 global rounds
+Validation Loss     : 1.99
+Validation Accuracy : top1/top5 43.08%/89.04%
+#######################################################
+Took 314.73598432540894s
+#######################################################
+Avg Validation Stats after 3 global rounds
+Validation Loss     : 1.88
+Validation Accuracy : top1/top5 51.62%/92.68%
+#######################################################
+Took 310.01259994506836s
+| ID | GPU | MEM |
+------------------
+|  0 |  0% | 77% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+#######################################################
+Avg Validation Stats after 4 global rounds
+Validation Loss     : 2.41
+Validation Accuracy : top1/top5 50.68%/91.64%
+#######################################################
+Took 318.0139458179474s
+#######################################################
+Avg Validation Stats after 5 global rounds
+Validation Loss     : 2.31
+Validation Accuracy : top1/top5 52.76%/93.52%
+#######################################################
+Took 329.12183570861816s
+Traceback (most recent call last):
+  File "/home/shared/FedSSL_Inter/main.py", line 76, in <module>
+    state_dict = train_server_model(
+  File "/home/shared/FedSSL_Inter/trainers.py", line 72, in train_server_model
+    for batch_idx, (images, labels) in enumerate(loader):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 368, in __iter__
+    return self._get_iterator()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 314, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 927, in __init__
+    w.start()
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/context.py", line 284, in _Popen
+    return Popen(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    super().__init__(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/popen_spawn_posix.py", line 47, in _launch
+    reduction.dump(process_obj, fp)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/reduction.py", line 60, in dump
+    ForkingPickler(file, protocol).dump(obj)
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/multiprocessing/queues.py", line 57, in __getstate__
+    def __getstate__(self):
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/home/shared/miniconda3/envs/FedSSL/lib/python3.9/threading.py", line 1448, in _shutdown
+    lock.acquire()
+KeyboardInterrupt:

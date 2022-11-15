@@ -10,7 +10,7 @@ import copy
 from options import args_parser
 from trainers import test_server_model, test_client_model, train_client_model, train_server_model, finetune_client_model
 from models import ResNet18Model
-from utils import average_weights, set_seed, Timer, MonitorGPU, kNN_helpers, gradient_diversity
+from utils import average_weights, set_seed, Timer, MonitorGPU, kNN_helpers, gradient_diversity, collect_weights
 
 from data_utils import CIFAR10_Train, CIFAR10_Test
 
@@ -32,10 +32,10 @@ if __name__ == '__main__':
     if args.parallel == True:
         mp.set_start_method('spawn', force=True)
 
-    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+    ser_device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
     # Set the model to train and send it to device.
-    server_model = ResNet18Model(args).to(device).share_memory() # this is the supervised model
-    client_model = ResNet18Model(args).to(device).share_memory() # online model for FL
+    server_model = ResNet18Model(args).to(ser_device)#.share_memory() # this is the supervised model
+    client_model = ResNet18Model(args).to(ser_device)#.share_memory() # online model for FL
     
     train_set = CIFAR10_Train(args)
     test_set = CIFAR10_Test(args)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 state_dict = train_server_model(
                     args = args,
                     dataset = train_set.get_server_set(),
-                    device = device,
+                    device = ser_device,
                     sup_model = server_model,
                     epochs = args.server_epochs
                 )
@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 state_dict = train_server_model(
                     args = args, 
                     dataset = train_set.get_server_set(), 
-                    device = device, 
+                    device = ser_device, 
                     sup_model = client_model,
                     epochs=args.server_epochs, 
                 )
@@ -94,7 +94,7 @@ if __name__ == '__main__':
             
             for i, client_id in enumerate(part_users_ids):
                 client_set = train_set.get_client_set(client_id)
-                curr_device = torch.device("cuda")
+                curr_device = torch.device(f"cuda:{i % torch.cuda.device_count()}")
                 if args.parallel:
                     p = mp.Process(target = train_client_model, args=(
                         args, 
@@ -138,6 +138,8 @@ if __name__ == '__main__':
             # FedMatch
             if epoch % 10 == 0 and args.exp == "FedMatch":
                 helpers = kNN_helpers(args, client_model, local_weights)
+
+            collect_weights(local_weights) # bring weights to cuda:0 
             # Extract gradient diversity (FedRGD definition)
             grad_div = gradient_diversity(local_weights, client_model.state_dict())
             # --------------------------------------------------------------------------------------------
@@ -148,11 +150,11 @@ if __name__ == '__main__':
             # Linear eval
             loss, top1, top5 = test_client_model(
                 args = args,
-                finetune_set = test_set.get_finetune_set() if should_send_server_model else None,
+                finetune_set = test_set.get_finetune_set(),
                 test_set = test_set.get_test_set(),
-                device = device,
+                device = ser_device,
                 unsup_model = client_model,
-                finetune = True if should_send_server_model else False, # finetune just means training the classifier  
+                finetune = True, # finetune just means training the classifier  
                 freeze = args.freeze,   # freeze backbone
                 finetune_epochs = args.finetune_epoch 
             )
@@ -162,7 +164,7 @@ if __name__ == '__main__':
             state_dict = train_server_model(
                 args = args,
                 dataset = train_set.get_server_set(),
-                device = device,
+                device = ser_device,
                 sup_model = server_model,
                 epochs = args.server_epochs
             )
@@ -172,7 +174,7 @@ if __name__ == '__main__':
             loss, top1, top5 = test_server_model(
                 args = args, 
                 dataset = test_set.get_test_set(),
-                device = device,
+                device = ser_device,
                 sup_model = server_model
             )
 

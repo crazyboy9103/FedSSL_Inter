@@ -13,7 +13,7 @@ from sklearn.neighbors import KDTree
 
 def gradient_diversity(local_weights, global_weight):
     nabla = {}
-    l2_norm = torch.tensor(0., device="cuda")
+    l2_norm = torch.tensor(0., device="cuda:0")
     for client_id, local_weight in local_weights.items():
         for k in local_weight:
             if "weight" in k or "bias" in k:
@@ -25,19 +25,19 @@ def gradient_diversity(local_weights, global_weight):
                 else:
                     nabla[k] = nabla_k
         
-    denom = torch.tensor(0., device="cuda")
+    denom = torch.tensor(0., device="cuda:0")
     for k, nabla_k in nabla.items():
         denom += torch.pow(torch.norm(nabla_k), 2)
 
     grad_div = l2_norm / denom
-    return grad_div
+    return grad_div.item()
     
 
 
 
 
 def kNN_helpers(args, model, local_weights):
-    random_input = torch.rand((1, 3, 32, 32), device="cuda" if torch.cuda.is_available() else "cpu", requires_grad=False)
+    random_input = torch.rand((1, 3, 32, 32), device="cuda:0" if torch.cuda.is_available() else "cpu", requires_grad=False)
     reps = None
     with torch.no_grad():
         model = model.eval()
@@ -162,6 +162,14 @@ class AverageMeter():
     def reset(self):
         self.values = []
 
+def collect_weights(w):
+    with torch.no_grad():
+        w_avg = w[0]  
+        for key in w_avg.keys():
+            for i in range(1, len(w)): # 0th gpu resides at 0th index
+                if 0 != w[i][key].get_device():
+                    w[i][key] = w[i][key].to(w_avg[key].get_device())
+
 def average_weights(w):
     """
     Returns the average of the weights.
@@ -170,8 +178,6 @@ def average_weights(w):
         w_avg = copy.deepcopy(w[0])  # 0th always reside at 0th
         for key in w_avg.keys():
             for i in range(1, len(w)):
-                if w_avg[key].get_device() != w[i][key].get_device():
-                    w[i][key] = w[i][key].to(w_avg[key].get_device())
                 w_avg[key] += w[i][key]
                 
             w_avg[key] = torch.div(w_avg[key], len(w))
