@@ -72,7 +72,7 @@ if __name__ == '__main__':
                 server_model.load_state_dict(state_dict)
 
             # For rest SSL methods, must train client model with supervised set
-            if args.exp in ["FixMatch", "PseudoLabel", "SimCLR", "SimSiam", "BYOL", "FedMatch"]:
+            if args.exp in ["FixMatch", "PseudoLabel", "SimCLR", "SimSiam", "BYOL", "FedMatch", "FLSL"]:
                 state_dict = train_server_model(
                     args = args, 
                     dataset = train_set.get_server_set(), 
