@@ -256,6 +256,58 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                     loss = (loss1 + loss2).mean()
             
             
+            if args.agg == "FedSSL":
+                # MSE Loss
+                # with torch.no_grad():
+                #     ref_z = ref_model(orig_images, return_embedding=True)
+                
+                # orig_z, orig_p = client_model(orig_images)
+                # mse_loss = nn.MSELoss(reduction="mean").to(device)
+                # dis_loss = args.mse_ratio * mse_loss(ref_z.detach(), orig_p).mean()
+                # loss += dis_loss
+                # ===
+                #
+                activation = {}
+                def get_activation(name):
+                    def hook(model, input, output):
+                        activation[name] = output # no detach here as we want to train client model
+                    return hook
+                
+                teacher_activation = {}
+                def get_teacher_activation(name):
+                    def hook(model, input, output):
+                        teacher_activation[name] = output.detach()
+                    return hook
+
+                teacher_handles = [
+                    ref_model.backbone.layer1.register_forward_hook(get_teacher_activation('layer1')),
+                    ref_model.backbone.layer2.register_forward_hook(get_teacher_activation('layer2')),
+                    ref_model.backbone.layer3.register_forward_hook(get_teacher_activation('layer3')),
+                    ref_model.backbone.layer4.register_forward_hook(get_teacher_activation('layer4'))
+                ]
+
+                client_handles = [
+                    client_model.backbone.layer1.register_forward_hook(get_activation('layer1')),
+                    client_model.backbone.layer2.register_forward_hook(get_activation('layer2')),
+                    client_model.backbone.layer3.register_forward_hook(get_activation('layer3')),
+                    client_model.backbone.layer4.register_forward_hook(get_activation('layer4'))
+                ]
+                
+                with torch.no_grad():
+                    ref_z = ref_model(orig_images, return_embedding=True)
+                
+                orig_z = client_model(orig_images, return_embedding=True)
+
+                mse_fn = nn.MSELoss(reduction="mean").to(device)
+                dis_loss = mse_fn(ref_z.detach(), orig_z).mean()
+
+                for name in teacher_activation:
+                    dis_loss +=  args.mse_ratio * mse_fn(teacher_activation[name], activation[name])
+                #KDLoss = FedSSL_loss(device, outputs = orig_z, teacher_outputs = ref_z.detach(), args = args)
+                loss += dis_loss
+                for th, ch in zip(teacher_handles, client_handles):
+                    th.remove()
+                    ch.remove()
 
             if epoch > 0:
                 if args.agg == "FedProx":
@@ -268,61 +320,6 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                             w_diff += torch.pow(torch.norm(w - w_t), 2)
                     loss += args.mu / 2. * w_diff
 
-            
-                elif args.agg == "FedSSL":
-                    # MSE Loss
-                    # with torch.no_grad():
-                    #     ref_z = ref_model(orig_images, return_embedding=True)
-                    
-                    # orig_z, orig_p = client_model(orig_images)
-                    # mse_loss = nn.MSELoss(reduction="mean").to(device)
-                    # dis_loss = args.mse_ratio * mse_loss(ref_z.detach(), orig_p).mean()
-                    # loss += dis_loss
-                    # ===
-                    #
-                    
-                    activation = {}
-                    def get_activation(name):
-                        def hook(model, input, output):
-                            activation[name] = output # no detach here as we want to train client model
-                        return hook
-                    
-                    teacher_activation = {}
-                    def get_teacher_activation(name):
-                        def hook(model, input, output):
-                            teacher_activation[name] = output.detach()
-                        return hook
-
-                    teacher_handles = [
-                        ref_model.backbone.layer1.register_forward_hook(get_teacher_activation('layer1')),
-                        ref_model.backbone.layer2.register_forward_hook(get_teacher_activation('layer2')),
-                        ref_model.backbone.layer3.register_forward_hook(get_teacher_activation('layer3')),
-                        ref_model.backbone.layer4.register_forward_hook(get_teacher_activation('layer4'))
-                    ]
-
-                    client_handles = [
-                        client_model.backbone.layer1.register_forward_hook(get_activation('layer1')),
-                        client_model.backbone.layer2.register_forward_hook(get_activation('layer2')),
-                        client_model.backbone.layer3.register_forward_hook(get_activation('layer3')),
-                        client_model.backbone.layer4.register_forward_hook(get_activation('layer4'))
-                    ]
-                    
-                    with torch.no_grad():
-                        ref_z = ref_model(orig_images, return_embedding=True)
-                    
-                    orig_z = client_model(orig_images, return_embedding=True)
-
-                    mse_fn = nn.MSELoss(reduction="mean").to(device)
-                    dis_loss = mse_fn(ref_z.detach(), orig_z).mean()
-
-                    for name in teacher_activation:
-                        dis_loss +=  args.mse_ratio * mse_fn(teacher_activation[name], activation[name])
-                    #KDLoss = FedSSL_loss(device, outputs = orig_z, teacher_outputs = ref_z.detach(), args = args)
-                    loss += dis_loss
-                    for th, ch in zip(teacher_handles, client_handles):
-                        th.remove()
-                        ch.remove()
-                
                 if args.exp == "FedMatch":
                     assert args.agg != 'FedProx', 'agg must be either FedAvg or FedSSL'
                     w_diff = torch.tensor(0., device=device)

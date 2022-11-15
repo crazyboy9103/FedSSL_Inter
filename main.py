@@ -134,12 +134,13 @@ if __name__ == '__main__':
                 
                 # must retain the subprocesses until weights are fetched at main process
                 done.set()
-            
+                
+            collect_weights(local_weights) # bring weights to cuda:0 
             # FedMatch
             if epoch % 10 == 0 and args.exp == "FedMatch":
                 helpers = kNN_helpers(args, client_model, local_weights)
 
-            collect_weights(local_weights) # bring weights to cuda:0 
+            
             # Extract gradient diversity (FedRGD definition)
             grad_div = gradient_diversity(local_weights, client_model.state_dict())
             # --------------------------------------------------------------------------------------------
@@ -154,7 +155,7 @@ if __name__ == '__main__':
                 test_set = test_set.get_test_set(),
                 device = ser_device,
                 unsup_model = client_model,
-                finetune = True, # finetune just means training the classifier  
+                finetune = True, # finetune trains the classifier only  
                 freeze = args.freeze,   # freeze backbone
                 finetune_epochs = args.finetune_epoch 
             )
