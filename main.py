@@ -10,7 +10,7 @@ import copy
 from options import args_parser
 from trainers import test_server_model, test_client_model, train_client_model, train_server_model, finetune_client_model
 from models import ResNet18Model
-from utils import average_weights, set_seed, Timer, MonitorGPU, kNN_helpers, gradient_diversity, collect_weights
+from utils import average_weights, set_seed, Timer, MonitorGPU, kNN_helpers, gradient_diversity, collect_weights, bn_divergence
 
 from data_utils import CIFAR10_Train, CIFAR10_Test
 
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     for epoch in range(args.epochs):
         timer.set_timer()
         if args.exp != "centralized":
-            if should_send_server_model:          
+            if should_send_server_model or args.exp == "FedRGD":          
                 state_dict = train_server_model(
                     args = args,
                     dataset = train_set.get_server_set(),
@@ -72,7 +72,7 @@ if __name__ == '__main__':
                 server_model.load_state_dict(state_dict)
 
             # For rest SSL methods, must train client model with supervised set
-            if args.exp in ["FixMatch", "PseudoLabel", "SimCLR", "SimSiam", "BYOL", "FedMatch", "FLSL"]:
+            if args.exp in ["FixMatch", "PseudoLabel", "SimCLR", "SimSiam", "BYOL", "FedMatch", "FLSL"] and not should_send_server_model:
                 state_dict = train_server_model(
                     args = args, 
                     dataset = train_set.get_server_set(), 
@@ -143,10 +143,37 @@ if __name__ == '__main__':
             
             # Extract gradient diversity (FedRGD definition)
             grad_div = gradient_diversity(local_weights, client_model.state_dict())
+            bn_div = bn_divergence(local_weights, client_model.state_dict())
             # --------------------------------------------------------------------------------------------
             # FedAvg
-            unsup_weights = average_weights(local_weights)            
-            client_model.load_state_dict(copy.deepcopy(unsup_weights))           
+            if args.exp == "FedRGD":
+                # Follow FedRGD EMNIST experiment's hyperparam
+                groups = 2
+                assert (num_clients_part % groups) == 0, "num clients must be divisible by num groups"
+
+                idxs = set(range(num_clients_part))
+                group_idxs = {}
+                
+                for group_idx in range(groups):
+                    random_idxs = np.random.choice(tuple(idxs), num_clients_part // groups, replace=False)
+                    idxs = idxs - set(random_idxs)
+                    group_idxs[group_idx] = random_idxs
+
+                
+                grouped_averages = {}
+                for group_id, idxs in group_idxs.items():
+                    group_weights = {j: local_weights[idx] for j, idx in enumerate(idxs)}
+                    group_weights[len(idxs)] = copy.deepcopy(server_model.state_dict())
+                    
+                    grouped_avg_weights = average_weights(group_weights)
+                    grouped_averages[group_id] = grouped_avg_weights
+                
+                
+                grouped_avg_weight = average_weights(grouped_averages)
+            else:
+                grouped_avg_weight = average_weights(local_weights)
+
+            client_model.load_state_dict(copy.deepcopy(grouped_avg_weight))           
             # --------------------------------------------------------------------------------------------
             # Linear eval
             loss, top1, top5 = test_client_model(
@@ -180,20 +207,23 @@ if __name__ == '__main__':
             )
 
             grad_div = 0
-            
+            bn_div = {}
+
         print("#######################################################")
         print(f' \nAvg Validation Stats after {epoch+1} global rounds')
         print(f'Validation Loss     : {loss:.2f}')
         print(f'Validation Accuracy : top1/top5 {top1:.2f}%/{top5:.2f}%\n')
         print("#######################################################")
         print(f"Took {timer.see_timer()}s")
-        wandb_writer.log({
+        wandb_log = {
             "test_loss_server": loss, 
             "top1_server": top1,
             "top5_server": top5,
             "epoch": epoch,
-            "grad_div": grad_div
-        })
+            "grad_div": grad_div 
+        }
+        wandb_log.update(bn_div) # bn div is recorded layer by layer
+        wandb_writer.log(wandb_log)
 
     gpu_monitor.stop()
 

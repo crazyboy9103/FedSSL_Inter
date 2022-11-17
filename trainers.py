@@ -95,11 +95,14 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
     if args.agg == "FedSSL" or args.exp in ["FedBYOL", "FedMatch"]:
         assert sup_model != None, "sup model must be non null"
         ref_model = copy.deepcopy(sup_model).to(device).eval()
+    
+    if args.exp == "FedMatch":
+        model_wrapper = copy.deepcopy(unsup_model).to(device)
 
     if args.agg == "FedProx":
         glob_model = copy.deepcopy(unsup_model).to(device)
 
-    if args.exp == "BYOL":
+    if args.exp in ["BYOL", "FedBYOL"]:
         ema_helper = EMAHelper()
         ema_helper.register(client_model)
         target_net = copy.deepcopy(client_model).to(device).eval() 
@@ -121,17 +124,17 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
         for batch_idx, (images, labels) in enumerate(loader):
             optimizer.zero_grad()
             if args.exp == "FLSL" or args.exp == "centralized":
-                images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
-                preds = client_model(images, return_logits=True)
+                orig_images, labels = images.to(device, non_blocking=True), labels.to(device, non_blocking=True)
+                preds = client_model(orig_images, return_logits=True)
                 loss = FL_criterion(device)(preds, labels)
 
             elif args.exp == "PseudoLabel":
-                images = images.to(device, non_blocking=True)
+                orig_images = images.to(device, non_blocking=True)
                 with torch.no_grad():
-                    pseudo_preds = client_model(images, return_logits=True)
+                    pseudo_preds = client_model(orig_images, return_logits=True)
                     pseudo_labels = pseudo_preds.argmax(dim=1)
                 
-                preds = client_model(images, return_logits=True)
+                preds = client_model(orig_images, return_logits=True)
                 loss = FL_criterion(device)(preds, pseudo_labels)
 
             elif args.exp == "FedMatch":
@@ -139,10 +142,12 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                 orig_images, views = orig_images.to(device, non_blocking=True), views.to(device, non_blocking=True)
 
                 # Consistency regularization
-                orig_state_dict = client_model.state_dict()
-                with torch.no_grad():
-                    z = client_model(orig_images, return_embedding=True)
                 
+                with torch.no_grad():
+                    client_model = client_model.eval()
+                    z = client_model(orig_images, return_embedding=True)
+                    client_model = client_model.train()
+
                 p =  client_model.projector(z)
                 orig_logits = client_model.classifier(p)
 
@@ -153,9 +158,9 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                     helper_labels = {}
                     for client_id, helper_state_dict in helpers.items():
                         with torch.no_grad():
-                            client_model.load_state_dict(helper_state_dict)
-                            _, p = client_model(orig_images)
-                            helper_logits = client_model.classifier(p).detach()
+                            model_wrapper.load_state_dict(helper_state_dict)
+                            _, p = model_wrapper(orig_images)
+                            helper_logits = model_wrapper.classifier(p).detach()
                                             
                         loss += (nn.KLDivLoss(size_average="batchmean")(orig_logits, helper_logits)) / len(helpers)
 
@@ -168,8 +173,6 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                                 helper_label.append(-1)
 
                         helper_labels[client_id] = helper_label
-                    
-                    
 
                 for i, pseudo_label in enumerate(pseudo_labels):
                     counts = {pseudo_label: 1}
@@ -184,18 +187,20 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                     maj_vote_label = sorted(counts.items(), key=lambda x: x[1], reverse=True)[0][0]
                     pseudo_labels[i] = maj_vote_label
                 
-                client_model.load_state_dict(orig_state_dict)
+                
 
                 with torch.no_grad():
+                    client_model = client_model.eval()
                     z = client_model(views, return_embedding=True)
-                
-                p =  client_model.projector(z)
+                    client_model = client_model.train()
+
+                p = client_model.projector(z)
                 local_logits = client_model.classifier(p)
 
                 loss += FL_criterion(device)(local_logits, pseudo_labels)
                 loss *= args.iccs_lambda
 
-            elif args.exp in ["SimCLR", "SimSiam", "FixMatch", "BYOL", "FedBYOL"]:
+            elif args.exp in ["SimCLR", "SimSiam", "FixMatch", "BYOL", "FedBYOL", "FedRGD"]:
                 orig_images, views1, views2 = images
                 orig_images = orig_images.to(device, non_blocking=True)
                 views1 = views1.to(device, non_blocking=True)
@@ -217,11 +222,13 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                     # view1 = weak aug
                     # view2 = strong aug
                     with torch.no_grad():
+                        client_model = client_model.eval()
                         pseudo_preds = client_model(views1, return_logits=True).detach()
                         pseudo_probs, pseudo_labels = torch.max(nn.Softmax(dim=1)(pseudo_preds), 1)
                         above_thres = pseudo_probs > args.threshold
+                        client_model = client_model.train()
                     
-                    if len(above_thres) > 0:
+                    if above_thres.sum().item() > 1:
                         pseudo_labels = pseudo_labels[above_thres]
                         views2 = views2[above_thres]
                         preds = client_model(views2, return_logits=True)
@@ -247,14 +254,34 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                 elif args.exp == "FedBYOL":
                     z1, p1 = client_model(views1)
                     z2, p2 = client_model(views2)   
+                    ema_helper.update(client_model)
+                    ema_helper.ema(target_net)
                     with torch.no_grad():
                         # Use server model as target net
-                        ref_z1 = ref_model(views1, return_embedding=True)
-                        ref_z2 = ref_model(views2, return_embedding=True)
+                        ref_z1 = target_net(views1, return_embedding=True)
+                        ref_z2 = target_net(views2, return_embedding=True)
+
                     loss1 = BYOL_loss(device, p1, ref_z2.detach())
                     loss2 = BYOL_loss(device, p2, ref_z1.detach())
                     loss = (loss1 + loss2).mean()
-            
+
+                elif args.exp == "FedRGD":
+                    # view1 = weak aug
+                    # view2 = strong aug
+                    with torch.no_grad():
+                        client_model = client_model.eval()
+                        pseudo_preds = client_model(views1, return_logits=True).detach()
+                        pseudo_probs, pseudo_labels = torch.max(nn.Softmax(dim=1)(pseudo_preds), 1)
+                        above_thres = pseudo_probs > args.threshold
+                        client_model = client_model.train()
+                    
+                    if above_thres.sum().item() > 1:
+                        pseudo_labels = pseudo_labels[above_thres]
+                        views2 = views2[above_thres]
+                        preds = client_model(views2, return_logits=True)
+                        loss = FL_criterion(device)(preds, pseudo_labels)
+                    else:
+                        loss = torch.tensor(0., device=device)
             
             if args.agg == "FedSSL":
                 # MSE Loss
@@ -298,13 +325,15 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                 
                 orig_z = client_model(orig_images, return_embedding=True)
 
-                mse_fn = nn.MSELoss(reduction="mean").to(device)
-                dis_loss = mse_fn(ref_z.detach(), orig_z).mean()
+                # mse_fn = nn.MSELoss(reduction="mean").to(device)
+                # dis_loss = mse_fn(ref_z.detach(), orig_z).mean()
 
                 for name in teacher_activation:
-                    dis_loss +=  args.mse_ratio * mse_fn(teacher_activation[name], activation[name])
+                    loss +=  args.mse_ratio * mse_fn(teacher_activation[name], activation[name])
+                
+
                 #KDLoss = FedSSL_loss(device, outputs = orig_z, teacher_outputs = ref_z.detach(), args = args)
-                loss += dis_loss
+                #loss += dis_loss
                 for th, ch in zip(teacher_handles, client_handles):
                     th.remove()
                     ch.remove()
@@ -342,6 +371,9 @@ def train_client_model(args, dataset, device, sup_model = None, unsup_model = No
                     
                     loss += args.l1_lamb * w_diff_l1
 
+            if loss.item() == 0:
+                print("Skip training as no reliable pseudo-label was generated")
+                continue
             loss.backward()
             optimizer.step()
 
@@ -420,18 +452,18 @@ def BYOL_loss(device, p, z):
     z = F.normalize(z, dim=-1)
     return 2 - 2 * (p * z).sum(dim=-1)
 
-def FedSSL_loss(device, outputs, teacher_outputs, args):
-    alpha = args.fsl_alpha
-    T = args.fsl_temperature
-    KD_loss = nn.KLDivLoss(reduction="batchmean")(F.log_softmax(outputs/T, dim=1),
-                             F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T)
-    return KD_loss
+# def FedSSL_loss(device, outputs, teacher_outputs, args):
+#     alpha = args.fsl_alpha
+#     T = args.fsl_temperature
+#     KD_loss = nn.KLDivLoss(reduction="batchmean")(F.log_softmax(outputs/T, dim=1),
+#                              F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T)
+#     return KD_loss
 
 def FL_criterion(device):
-    return nn.CrossEntropyLoss().to(device)
+    return nn.CrossEntropyLoss(reduction="mean").to(device)
 
 def SimCLR_criterion(device):
-    return nn.CrossEntropyLoss().to(device)
+    return nn.CrossEntropyLoss(reduction="mean").to(device)
 
 def SimSiam_criterion(device):
     return nn.CosineSimilarity(dim=1).to(device)

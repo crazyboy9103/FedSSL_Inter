@@ -2,14 +2,26 @@ import numpy as np
 from torchvision import transforms as T, datasets
 from torch.utils.data import Subset, DataLoader
 import os
+import random
+
+class RandomApply(nn.Module):
+    def __init__(self, fn, p):
+        super().__init__()
+        self.fn = fn
+        self.p = p
+        
+    def forward(self, x):
+        if random.random() > self.p:
+            return x
+        return self.fn(x)
 
 class SimCLRTransform(object):
     def __init__(self):
         self.base = T.Compose([
-            T.RandomResizedCrop(32),
+            RandomApply([T.ColorJitter(0.4, 0.4, 0.4, 0.1)], p=0.3),
             T.RandomHorizontalFlip(),
-            T.RandomApply([T.ColorJitter(0.4, 0.4, 0.4, 0.1)], p=0.8),
-            T.GaussianBlur(kernel_size=int(0.1 * 32)),
+            RandomApply([T.GaussianBlur(kernel_size=int(0.1 * 32))], p=0.2)
+            T.RandomResizedCrop(32),           
             T.ToTensor(),
             T.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
         ])
@@ -28,6 +40,19 @@ class NoTransform(object):
     
     def __call__(self, x):
         return self.base(x)
+
+class WeakTransform(object):
+    def __init__(self):
+        self.base = T.Compose([
+            T.RandomHorizontalFlip(p=0.5),
+            T.RandomAffine(degrees=0, translate=(0.125, 0.125)), # No rotation, just translation
+            T.ToTensor(),
+            T.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+        ])
+    
+    def __call__(self, x):
+        return self.base(x)
+
     
 class FixMatchTransform(object):
     def __init__(self):
@@ -63,6 +88,27 @@ class FedMatchTransform(object):
     def __call__(self, x):
         return self.no(x), self.rand(x)
 
+class FedRGDTransform(object):
+    def __init__(self):
+        self.weak = T.Compose([
+            T.RandomHorizontalFlip(p=0.5),
+            T.RandomAffine(degrees=0, translate=(0.125, 0.125)), # No rotation, just translation
+            T.ToTensor(),
+            T.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+        ])
+        
+        self.strong = T.Compose([
+            T.RandAugment(num_ops=3), 
+            T.ToTensor(), 
+            T.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+        ])
+        
+        self.no = NoTransform()
+        
+    
+    def __call__(self, x):
+        return self.no(x), self.weak(x), self.strong(x)
+        
     
 class CIFAR10_Test():
     def __init__(self, args):
@@ -106,24 +152,24 @@ class CIFAR10_Train():
         
         self.dict_users, self.server_data_idx = self.get_partition(args.num_users, args.num_items, args.alpha)
         
-        self.server_transform = NoTransform()
+        self.server_transform = WeakTransform()
         
         self.local_bs = args.local_bs
         self.server_bs = args.server_bs
         self.server_num_items = args.server_num_items
         
         transforms = {
-            "FLSL": NoTransform(), 
-            "FixMatch": FixMatchTransform(),
-            "FedMatch": FedMatchTransform(),
-            "PseudoLabel": NoTransform(),    #TODO
-            "FedRGD": NoTransform(),         #TODO
-            "SimCLR": SimCLRTransform(), 
-            "SimSiam": SimCLRTransform(), 
-            "BYOL": SimCLRTransform(), 
-            "FedBYOL": SimCLRTransform(), 
+            "FLSL": NoTransform, 
+            "FixMatch": FixMatchTransform,
+            "FedMatch": FedMatchTransform,
+            "PseudoLabel": NoTransform,   
+            "FedRGD": FedRGDTransform,        
+            "SimCLR": SimCLRTransform, 
+            "SimSiam": SimCLRTransform, 
+            "BYOL": SimCLRTransform, 
+            "FedBYOL": SimCLRTransform, 
         }
-        self.client_transform = transforms[args.exp]
+        self.client_transform = transforms[args.exp]()
         self.num_workers = args.num_workers
 
     def get_partition(self, num_users, num_items, alpha):
@@ -167,7 +213,7 @@ class CIFAR10_Train():
         for i, data_idxs in dict_users.items():
             dict_users[i] = list(data_idxs)
 
-        server_data_idx = {i: list(idxs) for i, idxs in idxs_labels.items()}
+        server_data_idx = {i: np.random.choice(list(idxs), self.server_num_items, replace=False).tolist() for i, idxs in idxs_labels.items()}
 
         return dict_users, server_data_idx
 
@@ -179,8 +225,8 @@ class CIFAR10_Train():
     def get_server_set(self):
         idxs = []
         for _class, class_idxs in self.server_data_idx.items():
-            selected_idxs = np.random.choice(class_idxs, self.server_num_items, replace=False)
-            idxs.extend(selected_idxs.tolist())
+            #selected_idxs = np.random.choice(class_idxs, self.server_num_items, replace=False)
+            idxs.extend(class_idxs)
         
         self.train_dataset.transform = self.server_transform
         subset = Subset(self.train_dataset, idxs)

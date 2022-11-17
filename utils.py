@@ -32,7 +32,32 @@ def gradient_diversity(local_weights, global_weight):
     grad_div = l2_norm / denom
     return grad_div.item()
     
+def bn_divergence(local_weights, global_weight):
+    div = {}
+    l2_norms = {}
+    for client_id, local_weight in local_weights.items():
+        for k in local_weight:
+            if "bn" in k and ("weight" in k or "bias" in k or "running_mean" in k or "running_var" in k):
+                div_k = local_weight[k].detach() - global_weight[k].detach()
+                if k in l2_norms:
+                    l2_norms[k] += torch.pow(torch.norm(div_k), 2)
+                else:
+                    l2_norms[k] = torch.pow(torch.norm(div_k), 2)
 
+                if k in div:
+                    div[k] += div_k
+                else:
+                    div[k] = div_k
+    
+    denom = torch.tensor(0., device="cuda:0")
+    divs = {}
+    for k in div:
+        div_k = div[k]
+        l2_norm = l2_norms[k]
+        
+        result = l2_norm / torch.pow(torch.norm(div_k), 2)
+        divs[k] = result
+    return divs
 
 
 
@@ -175,7 +200,7 @@ def average_weights(w):
     Returns the average of the weights.
     """
     with torch.no_grad():
-        w_avg = copy.deepcopy(w[0])  # 0th always reside at 0th
+        w_avg = copy.deepcopy(w[0]) 
         for key in w_avg.keys():
             for i in range(1, len(w)):
                 w_avg[key] += w[i][key]

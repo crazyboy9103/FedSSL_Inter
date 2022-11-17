@@ -24,12 +24,6 @@ def getTimestamp():
 
 def args_parser():
     parser = argparse.ArgumentParser()
-    
-    # model arguments
-    parser.add_argument('--model',            type=str,       default='resnet18',  help='resnet18|resnet50')
-    parser.add_argument('--pretrained',       type=str2bool,  default=False,       help='pretrained backbone')
-    parser.add_argument('--num_classes',      type=int,       default=10,          help="number of classes")
-    
     # GN (BN used by default) 
     parser.add_argument('--gn',               type=str2bool,  default=False,       help="group normalization")
     parser.add_argument('--num_groups',       type=int,       default=4,       help="group normalization")
@@ -46,18 +40,9 @@ def args_parser():
     parser.add_argument("--output_dim",         type=int,       default=512,       help="output embedding dim")
     parser.add_argument("--hidden_dim",         type=int,       default=512)
 
-    # Data setup
-    # RandomCrop target size
-    parser.add_argument('--target_size',      type=int,       default=32,        help="augmentation target width (=height)")
-    parser.add_argument("--num_users",      type=int,      default=10,        help="num users")
-    parser.add_argument("--num_items",      type=int,      default=32,        help="num data each client holds")
-    parser.add_argument("--iid",            type=str2bool, default=True,      help="iid on clients")
-    parser.add_argument('--dataset',        type=str,       default='cifar',  choices=["mnist", "cifar"],              help="mnist|cifar")
-
-    # 
-    parser.add_argument('--freeze',           type=str2bool,  default=False,      help='freeze feature extractor during linear eval')
     # Fixmatch
     parser.add_argument('--threshold',      type=float, default = 0.95)
+
     # FedSSL
     parser.add_argument('--fsl_alpha',      type=float, default=0.95)
     parser.add_argument('--fsl_temperature', type=float, default=6)
@@ -72,25 +57,35 @@ def args_parser():
     parser.add_argument('--iccs_lambda',   type=float,    default=1e-2)
     parser.add_argument('--l2_lamb',       type=float,     default=10)
     parser.add_argument('--l1_lamb',       type=float,     default=1e-5)
+
     # FL
     parser.add_argument('--epochs',         type=int,      default=200,        help="number of rounds of training")
     parser.add_argument('--frac',           type=float,    default=1,       help='the fraction of clients: C')
     parser.add_argument('--local_ep',       type=int,      default=10,         help="the number of local epochs: E")
     parser.add_argument('--local_bs',       type=int,      default=32,         help="local batch size")
     parser.add_argument('--lr',             type=float,    default=0.001,      help='learning rate')
+    # model arguments
+    parser.add_argument('--model',            type=str,       default='resnet18',  help='resnet18|resnet50')
+    parser.add_argument('--pretrained',       type=str2bool,  default=False,       help='pretrained backbone')
+    parser.add_argument('--num_classes',      type=int,       default=10,          help="number of classes")
     
-    
+
+    # Data setup
+    parser.add_argument('--target_size',      type=int,       default=32,        help="augmentation target width (=height)")
+    parser.add_argument("--num_users",      type=int,      default=10,        help="num users")
+    parser.add_argument("--num_items",      type=int,      default=32,        help="num data each client holds")
+    parser.add_argument("--iid",            type=str2bool, default=True,      help="iid on clients")
+    parser.add_argument('--dataset',        type=str,       default='cifar',  choices=["mnist", "cifar"],              help="mnist|cifar")
+
     # Server
+    parser.add_argument('--freeze',           type=str2bool,  default=False,      help='freeze feature extractor during linear eval')
     parser.add_argument('--server_epochs', type=int,  default=5)
     parser.add_argument('--server_num_items', type=int,  default=1000,  help="number of items per class used for training at server")
     parser.add_argument('--server_bs', type=int, default=32, help="server batch size for iid pre-training at server")
     
-    
-    parser.add_argument('--bn_stat_momentum', type=float, default=0.1, help="bn stat EMA momentum should be set < 0.1")
-
     # Train setting
     parser.add_argument("--parallel",       type=str2bool,  default=True,                help="parallel training with threads")
-    parser.add_argument("--num_workers",    type=int,       default=8,                    help="num workers for dataloader")
+    parser.add_argument("--num_workers",    type=int,       default=4,                    help="num workers for dataloader")
     parser.add_argument('--seed',           type=int,       default=2022,                 help='random seed')
     parser.add_argument('--ckpt_path',      type=str,       default="./checkpoints/checkpoint.pth.tar", help="model ckpt save path")
     parser.add_argument('--data_path',      type=str,       default="./data",             help="path to dataset")
@@ -115,15 +110,18 @@ def get_opts(args):
     else:
         args.alpha = 0.5    # Non-i.i.d. 
     
+    if args.exp == "FedRGD":
+        args.gn = True
+
     args.num_users = 100 if args.sanity_check != True else 10
     args.num_items = 300 if args.sanity_check != True else 100
     args.epochs  = 100   if args.sanity_check != True else 10
     args.frac = 0.05      if args.sanity_check != True else 0.5
     args.local_ep = 5   if args.sanity_check != True else 1
     args.local_bs = 128
-
-    args.server_epochs = 5      if args.sanity_check != True else 1
+    
+    args.server_epochs = 1      if args.sanity_check != True else 1
     args.server_num_items = 300 if args.sanity_check != True else 100
-    args.finetune_epoch = 5 if args.sanity_check != True else 1 
+    args.finetune_epoch = 1 if args.sanity_check != True else 1 
     args.finetune = True 
     args.freeze = True

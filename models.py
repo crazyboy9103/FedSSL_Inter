@@ -29,7 +29,7 @@ class BYOLProjector(nn.Module):
     
     def forward(self, x):
         return self.projector(x)
-    
+
 class SimSiamProjector(nn.Module):
     def __init__(self, hidden_dim, output_dim, gn=False, num_groups=4):
         super(SimSiamProjector, self).__init__()
@@ -102,7 +102,7 @@ class ResNet18Model(nn.Module):
                 )
          
         
-        if args.exp in ["FLSL", "centralized", "FixMatch", "PseudoLabel"]:
+        if args.exp in ["FLSL", "centralized", "FixMatch", "PseudoLabel", "FedRGD"]:
             backbone.fc = nn.Identity()
             projector = None
             classifier = nn.Linear(in_features, 10, bias=True)
@@ -122,9 +122,6 @@ class ResNet18Model(nn.Module):
             backbone.fc = nn.Identity()
             projector = BYOLProjector(in_features, args.hidden_dim, args.output_dim, args.gn, args.num_groups)
             classifier = nn.Linear(in_features, 10, bias=True)
-        
-        elif args.exp == "FedRGD":
-            pass
         
         elif args.exp == "FedMatch":
             backbone.fc = nn.Identity()

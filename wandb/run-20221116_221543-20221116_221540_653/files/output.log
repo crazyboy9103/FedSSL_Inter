@@ -1,0 +1,49 @@
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% |  5% |
+|  1 |  0% |  1% |
+|  2 |  0% |  0% |
+|  3 |  0% |  1% |
+#######################################################
+Traceback (most recent call last):
+  File "/home/kwangyeongill/FedSSL_recent/main.py", line 191, in <module>
+    wandb_writer.log({
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 292, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 255, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 1609, in log
+    self._log(data=data, step=step, commit=commit)
+  File "/home/kwangyeongill/anaconda/envs/FedSSL/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 1386, in _log
+    raise ValueError("wandb.log must be passed a dictionary")
+ValueError: wandb.log must be passed a dictionary
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 2.03
+Validation Accuracy : top1/top5 25.60%/80.10%
+#######################################################
+Took 178.06394410133362s
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 12% |
+|  1 | 100% | 18% |
+|  2 |   0% |  4% |
+|  3 | 100% | 18% |
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 12% |
+|  1 | 100% | 18% |
+|  2 |   0% |  4% |
+|  3 | 100% | 18% |
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 12% |
+|  1 | 100% | 18% |
+|  2 |   0% |  4% |
+|  3 | 100% | 18% |
+| ID | GPU  | MEM |
+-------------------
+|  0 |   0% | 12% |
+|  1 | 100% | 18% |
+|  2 |   0% |  4% |

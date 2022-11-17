@@ -1,0 +1,31 @@
+Files already downloaded and verified
+Files already downloaded and verified
+| ID | GPU | MEM |
+------------------
+|  0 |  0% |  5% |
+|  1 |  0% |  0% |
+|  2 |  0% |  0% |
+|  3 |  0% |  0% |
+#######################################################
+Avg Validation Stats after 1 global rounds
+Validation Loss     : 2.05
+Validation Accuracy : top1/top5 26.44%/78.00%
+#######################################################
+Took 180.02526688575745s
+#######################################################
+Avg Validation Stats after 2 global rounds
+Validation Loss     : 2.10
+Validation Accuracy : top1/top5 22.30%/74.46%
+#######################################################
+Took 176.18520188331604s
+| ID | GPU | MEM |
+------------------
+|  0 |  0% | 28% |
+|  1 |  0% | 10% |
+|  2 |  0% |  4% |
+|  3 |  0% |  4% |
+| ID | GPU | MEM |
+------------------
+|  0 |  0% | 28% |
+|  1 |  0% | 10% |
+|  2 |  0% |  4% |
